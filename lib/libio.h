@@ -3,7 +3,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 #include "librank.h"
 #include "libgame.h"
 
@@ -16,6 +15,8 @@
 #define GRAVA 0
 #define EXIBE 1
 #define IGNORE 5
+#define SUCESSO 1
+#define FRACASSO 0
 
 int menu();
 void exibe_matriz(int valor, int x, int y, int interruptor);
