@@ -24,7 +24,6 @@ void preenche_matriz(int *matriz){
 			}
 		}
 	}
-
 }
 
 /*randomiza os elementos de uma matriz 4X4*/

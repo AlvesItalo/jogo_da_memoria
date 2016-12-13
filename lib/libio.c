@@ -95,16 +95,10 @@ int recebe_coord(int *x, int *y, int player, int coord_num){
     *x = choice[0] - 48;
     *y = choice[1] - 48;
 
-    if(*x >= 1 && *x <= 4){
-        if(*y >= 1 && *y <= 4){
-            *x -= 1;
-            *y -= 1;
-            return SUCESSO;
-        }else{
-            *x = 0;
-            *y = 0;
-            return FRACASSO;
-        }
+    if((*x >= 1 && *x <= 4) && (*y >= 1 && *y <= 4) && !(matriz_fake[*x-1][*y-1])){
+        *x -= 1;
+        *y -= 1;
+        return SUCESSO;
     }else{
         *x = 0;
         *y = 0;
