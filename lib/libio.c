@@ -25,6 +25,19 @@ void exibe_pontuacao(int jogador1, int jogador2){
 			"Pontuacao: %d\tPontuacao: %d\n", jogador1, jogador2);
 }
 
+int exibe_vencedor(int jogador1, int jogador2){
+	if(jogador1 > jogador2){
+		printf("O vencedor foi o jogador 1 com %d pontos.\n", jogador1);
+		return jogador1;
+	}else if(jogador1 < jogador2){
+		printf("O vencedor foi o jogador 2 com %d pontos\n", jogador2);
+		return jogador2;
+	}else{
+		printf("Empate! Jogue novamente.");
+		return 0;
+	}
+}
+
 void grava_valor(int valor, int x, int y){
 	matriz_fake[x][y] = valor;
 }
@@ -41,6 +54,7 @@ void credito(){
 /*modificar posteriormente com as chamadas das funções*/
 void menu(){
     char escolha[4];
+    int pontuacao_venc = 0;
 
     do{
         limpar_console();
@@ -48,6 +62,7 @@ void menu(){
                 "[1] - 1 Jogador\n"
                 "[2] - 2 jogadores\n"
                 "[3] - Ranking\n"
+                "[4] - Creditos\n"
                 "[0] - Sair\n"
                 ">>> ");
         fflush(stdin);
@@ -58,14 +73,23 @@ void menu(){
                 exit(0);
                 break;
             case '1':
-                printf("Um jogador!");
+                pontuacao_venc = um_jogador();
+                if(pontuacao_venc){
+                	printf("Gravou pontuacao");
+                }
                 break;
             case '2':
-                printf("Dois jogadores!");
+                pontuacao_venc = dois_jogadores();
+                if(pontuacao_venc){
+                	printf("Gravou pontuacao");
+                }
                 break;
             case '3':
-                printf("Ranking!");
+                printf("rank\n");
                 break;
+            case '4':
+            	creditos();
+            	break;
        }
     }while(1);
 }
@@ -110,3 +134,5 @@ int recebe_coord(int *x, int *y, int player, int coord_num){
         return FRACASSO;
     }
 }
+
+

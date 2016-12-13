@@ -23,6 +23,6 @@ int recebe_coord(int *x, int *y, int player, int coord_num);
 void credito();
 void exibe_rank();
 void exibe_pontuacao(int jogador1, int jogador2);
-void exibe_vencedor(int jogador1, int jogador2);
+int exibe_vencedor(int jogador1, int jogador2);
 
 #endif

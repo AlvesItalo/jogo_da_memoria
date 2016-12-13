@@ -11,9 +11,9 @@
 int um_jogador();
 int dois_jogadores();
 int validar_escolha();
+void limpa_matriz_fake();
 void preenche_matriz(int *matriz);
 void mexe_mexe_mainha(int * matriz);
-void limpa_matriz_fake();
 void comp_coord(int *x, int *y); 
 
 #endif
