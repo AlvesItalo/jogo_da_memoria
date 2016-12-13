@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "librank.h"
 #include "libgame.h"
 
@@ -17,10 +18,10 @@
 #define FRACASSO 1
 
 void menu();
-void exibe_matriz(int valor, int x, int y);
-void grava_valor(int valor, int x, int y);
-int recebe_coord(int *x, int *y, int player, int coord_num);
-void credito();
+void exibe_matriz(int valor, int x, int y, int *matriz_fake);
+void grava_valor(int valor, int x, int y, int *matriz_fake);
+int recebe_coord(int *x, int *y, int player, int coord_num, int *matriz_fake);
+void creditos();
 void exibe_rank();
 void exibe_pontuacao(int jogador1, int jogador2);
 int exibe_vencedor(int jogador1, int jogador2);

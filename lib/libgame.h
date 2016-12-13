@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "libio.h"
 
 #define LINHAS 4
@@ -14,6 +15,6 @@ int validar_escolha();
 void limpa_matriz_fake();
 void preenche_matriz(int *matriz);
 void mexe_mexe_mainha(int * matriz);
-void comp_coord(int *x, int *y); 
+int comp_coord(int *x, int *y, int *matriz); 
 
 #endif

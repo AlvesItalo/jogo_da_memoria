@@ -9,11 +9,11 @@ int validar_escolha(int valor1, int valor2){
 	}
 }
 
-void limpa_matriz_fake(){
+void limpa_matriz_fake(int *matriz_fake){
 	int i = 0, j = 0;
 	for(i = 0; i < 4; i++){
 		for(j = 0; j < 4; j++){
-			matriz_fake[i][j] == 0;
+			*(matriz_fake+((4*i)+j)) == 0;
 		}
 	}
 }
@@ -53,12 +53,13 @@ void mexe_mexe_mainha(int * matriz){
 }
 
 int dois_jogadores(){
-	int *matriz = NULL;
+	int *matriz = NULL, *matriz_fake = NULL;
 	int pontuacao_jog1 = 0, pontuacao_jog2 = 0, pontuacao_total = 0, i = 0, j = 0, x1 = 0, y1 = 0, x2 = 0, y2 = 0, status = 1, acertou = 0;
 
 	matriz = (int *) malloc(16*sizeof(int));
+	matriz_fake = (int *) malloc(16*sizeof(int));
 
-	limpa_matriz_fake();
+	limpa_matriz_fake(matriz_fake);
 	preenche_matriz(matriz);
 	mexe_mexe_mainha(matriz);
 
@@ -69,30 +70,30 @@ int dois_jogadores(){
 			do{
 				limpar_console();
 				exibe_pontuacao(pontuacao_jog1, pontuacao_jog2);
-				exibe_matriz(IGNORE, IGNORE, IGNORE);
+				exibe_matriz(IGNORE, IGNORE, IGNORE, matriz_fake);
 
-				status = recebe_coord(&x1, &y1, 1, 1);
+				status = recebe_coord(&x1, &y1, 1, 1, matriz_fake);
 			}while(status);
 
 			do{
 				limpar_console();
 				exibe_pontuacao(pontuacao_jog1, pontuacao_jog2);
-				exibe_matriz(*(matriz+(4*x1)+y1), x1, y1);	
+				exibe_matriz(*(matriz+(4*x1)+y1), x1, y1, matriz_fake);	
 
-				status = recebe_coord(&x2, &y2, 1, 2);
+				status = recebe_coord(&x2, &y2, 1, 2, matriz_fake);
 				if((x1 == x2) && (y1 == y2)){status = 1;}
 
 			}while(status);		
 
 				limpar_console();
 				exibe_pontuacao(pontuacao_jog1, pontuacao_jog2);	
-				exibe_matriz(*(matriz+(4*x2)+y2), x2, y2);
+				exibe_matriz(*(matriz+(4*x2)+y2), x2, y2, matriz_fake);
 				
 			acertou = validar_escolha(*(matriz+(4*x1)+y1), *(matriz+(4*x2)+y2));
 
 			if(acertou){
-				grava_valor(*(matriz+(4*x1)+y1), x1, y1);
-				grava_valor(*(matriz+(4*x2)+y2), x2, y2);
+				grava_valor(*(matriz+(4*x1)+y1), x1, y1, matriz_fake);
+				grava_valor(*(matriz+(4*x2)+y2), x2, y2, matriz_fake);
 
 				pontuacao_jog1+=10;
 
@@ -119,36 +120,39 @@ int dois_jogadores(){
 			do{
 				limpar_console();
 				exibe_pontuacao(pontuacao_jog1, pontuacao_jog2);
-				exibe_matriz(IGNORE, IGNORE, IGNORE);
+				exibe_matriz(IGNORE, IGNORE, IGNORE, matriz_fake);
 
-				status = recebe_coord(&x1, &y1, 2, 1);
+				status = recebe_coord(&x1, &y1, 2, 1, matriz_fake);
 			}while(status);
 
 			do{
 				limpar_console();
 				exibe_pontuacao(pontuacao_jog1, pontuacao_jog2);
-				exibe_matriz(*(matriz+(4*x1)+y1), x1, y1);
+				exibe_matriz(*(matriz+(4*x1)+y1), x1, y1, matriz_fake);
 
-				status = recebe_coord(&x2, &y2, 2, 2);
+				status = recebe_coord(&x2, &y2, 2, 2, matriz_fake);
 				if((x1 == x2) && (y1 == y2)){status = 1;}
 
 			}while(status);	
 
 				limpar_console();
 				exibe_pontuacao(pontuacao_jog1, pontuacao_jog2);	
-				exibe_matriz(*(matriz+(4*x2)+y2), x2, y2);
+				exibe_matriz(*(matriz+(4*x2)+y2), x2, y2, matriz_fake);
 
 			acertou = validar_escolha(*(matriz+(4*x1)+y1), *(matriz+(4*x2)+y2));
 
 			if(acertou){
-				grava_valor(*(matriz+(4*x1)+y1), x1, y1);
-				grava_valor(*(matriz+(4*x2)+y2), x2, y2);
+				grava_valor(*(matriz+(4*x1)+y1), x1, y1, matriz_fake);
+				grava_valor(*(matriz+(4*x2)+y2), x2, y2, matriz_fake);
 
 				pontuacao_jog2+=10;
 
 				pontuacao_total = pontuacao_jog1+pontuacao_jog2;
 				if(pontuacao_total>70){
+
 					free(matriz);
+					free(matriz_fake);
+
 					return exibe_vencedor(pontuacao_jog1, pontuacao_jog2);
 				}
 
@@ -166,12 +170,13 @@ int dois_jogadores(){
 }
 
 int um_jogador(){
-	int *matriz = NULL;
+	int *matriz = NULL, *matriz_fake = NULL;
 	int pontuacao_jog1 = 0, pontuacao_jog2 = 0, pontuacao_total = 0, x1 = 0, y1 = 0, x2 = 0, y2 = 0, status = 1, acertou = 0;
 
 	matriz = (int *) malloc(16*sizeof(int));
+	matriz_fake = (int *) malloc(16*sizeof(int));
 
-	limpa_matriz_fake();
+	limpa_matriz_fake(matriz_fake);
 	preenche_matriz(matriz);
 	mexe_mexe_mainha(matriz);
 
@@ -184,31 +189,31 @@ int um_jogador(){
 			do{
 				limpar_console();
 				exibe_pontuacao(pontuacao_jog1, pontuacao_jog2);
-				exibe_matriz(IGNORE, IGNORE, IGNORE);
+				exibe_matriz(IGNORE, IGNORE, IGNORE, matriz_fake);
 
-				status = recebe_coord(&x1, &y1, 1, 1);
+				status = recebe_coord(&x1, &y1, 1, 1, matriz_fake);
 
 			}while(status);
 			/*segundas coordenadas*/
 			do{
 				limpar_console();
 				exibe_pontuacao(pontuacao_jog1, pontuacao_jog2);
-				exibe_matriz(*(matriz+(4*x1)+y1), x1, y1);	
+				exibe_matriz(*(matriz+(4*x1)+y1), x1, y1, matriz_fake);	
 
-				status = recebe_coord(&x2, &y2, 1, 2);
+				status = recebe_coord(&x2, &y2, 1, 2, matriz_fake);
 				if((x1 == x2) && (y1 == y2)){status = 1;}
 
 			}while(status);		
 
 			limpar_console();
 			exibe_pontuacao(pontuacao_jog1, pontuacao_jog2);	
-			exibe_matriz(*(matriz+(4*x2)+y2), x2, y2);
+			exibe_matriz(*(matriz+(4*x2)+y2), x2, y2, matriz_fake);
 				
 			acertou = validar_escolha(*(matriz+(4*x1)+y1), *(matriz+(4*x2)+y2));
 
 			if(acertou){
-				grava_valor(*(matriz+(4*x1)+y1), x1, y1);
-				grava_valor(*(matriz+(4*x2)+y2), x2, y2);
+				grava_valor(*(matriz+(4*x1)+y1), x1, y1, matriz_fake);
+				grava_valor(*(matriz+(4*x2)+y2), x2, y2, matriz_fake);
 				pontuacao_jog1+=10;
 
 				pontuacao_total = pontuacao_jog1+pontuacao_jog2;
@@ -216,9 +221,10 @@ int um_jogador(){
 
 					limpar_console();
 					exibe_pontuacao(pontuacao_jog1, pontuacao_jog2);
-					exibe_matriz(IGNORE, IGNORE, IGNORE);
+					exibe_matriz(IGNORE, IGNORE, IGNORE, matriz_fake);
 
 					free(matriz);
+					free(matriz_fake);
 
 					return exibe_vencedor(pontuacao_jog1, pontuacao_jog2);
 					
@@ -240,9 +246,9 @@ int um_jogador(){
 			do{
 				limpar_console();
 				exibe_pontuacao(pontuacao_jog1, pontuacao_jog2);
-				exibe_matriz(IGNORE, IGNORE, IGNORE);
+				exibe_matriz(IGNORE, IGNORE, IGNORE, matriz_fake);
 
-				status = comp_coord( &x1, &y2);
+				status = comp_coord( &x1, &y2, matriz_fake);
 			}while(status);
 
 			printf("Pressione [Enter] para ver o que o computador escolheu.");
@@ -252,9 +258,9 @@ int um_jogador(){
 			do{
 				limpar_console();
 				exibe_pontuacao(pontuacao_jog1, pontuacao_jog2);
-				exibe_matriz(*(matriz+(4*x1)+y1), x1, y1);
+				exibe_matriz(*(matriz+(4*x1)+y1), x1, y1, matriz_fake);
 
-				status = comp_coord(&x2, &y2);
+				status = comp_coord(&x2, &y2, matriz_fake);
 				if((x1 == x2) && (y1 == y2)){status = 1;}
 
 			}while(status);	
@@ -265,13 +271,13 @@ int um_jogador(){
 
 			limpar_console();
 			exibe_pontuacao(pontuacao_jog1, pontuacao_jog2);	
-			exibe_matriz(*(matriz+(4*x2)+y2), x2, y2);
+			exibe_matriz(*(matriz+(4*x2)+y2), x2, y2, matriz_fake);
 
 			acertou = validar_escolha(*(matriz+(4*x1)+y1), *(matriz+(4*x2)+y2));
 
 			if(acertou){
-				grava_valor(*(matriz+(4*x1)+y1), x1, y1);
-				grava_valor(*(matriz+(4*x2)+y2), x2, y2);
+				grava_valor(*(matriz+(4*x1)+y1), x1, y1, matriz_fake);
+				grava_valor(*(matriz+(4*x2)+y2), x2, y2, matriz_fake);
 
 				pontuacao_jog2+=10;
 
@@ -280,7 +286,7 @@ int um_jogador(){
 
 					limpar_console();
 					exibe_pontuacao(pontuacao_jog1, pontuacao_jog2);
-					exibe_matriz(IGNORE, IGNORE, IGNORE);
+					exibe_matriz(IGNORE, IGNORE, IGNORE, matriz_fake);
 
 					free(matriz);
 					return exibe_vencedor(pontuacao_jog1, pontuacao_jog2);
@@ -299,7 +305,7 @@ int um_jogador(){
 	}/*fim do loop da partida*/
 }
 
-int comp_coord(int *x, int *y){
+int comp_coord(int *x, int *y, int *matriz_fake){
 
 	srand((unsigned) time(NULL));
 
@@ -307,7 +313,7 @@ int comp_coord(int *x, int *y){
 	*y = rand() % 4;
 
 
-	if((*x >= 1 && *x <= 4) && (*y >= 1 && *y <= 4) && !(matriz_fake[*x-1][*y-1])){
+	if((*x >= 1 && *x <= 4) && (*y >= 1 && *y <= 4) && !(*(matriz_fake+((4**x)+*y)))){
         *x -= 1;
         *y -= 1;
         return SUCESSO;

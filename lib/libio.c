@@ -1,7 +1,6 @@
 #include "libio.h"
 
-
-void exibe_matriz(int valor, int x, int y){
+void exibe_matriz(int valor, int x, int y, int *matriz_fake){
 	int i = 0, j = 0;
 
 	for(i = 0; i < 4; i++){
@@ -9,8 +8,8 @@ void exibe_matriz(int valor, int x, int y){
 			if((i == x) && (j == y)){
 				printf(">%d<", valor);
 			}else{
-				if(matriz_fake[i][j]){
-					printf(" %d ", matriz_fake[i][j]);
+				if(*(matriz_fake+((4*i)+j))){
+					printf(" %d ", *(matriz_fake+((4*i)+j)));
 				}else{
 					printf(" X ");
 				}
@@ -38,8 +37,8 @@ int exibe_vencedor(int jogador1, int jogador2){
 	}
 }
 
-void grava_valor(int valor, int x, int y){
-	matriz_fake[x][y] = valor;
+void grava_valor(int valor, int x, int y, int *matriz_fake){
+	*(matriz_fake+((4*x)+y)) = valor;
 }
 
 void credito(){
@@ -94,7 +93,7 @@ void menu(){
     }while(1);
 }
 
-int recebe_coord(int *x, int *y, int player, int coord_num){
+int recebe_coord(int *x, int *y, int player, int coord_num, int *matriz_fake){
     int i = 0, j = 0, k = 0, tam = 0;
     char choice[10];
 
@@ -121,12 +120,10 @@ int recebe_coord(int *x, int *y, int player, int coord_num){
     }
     choice[k] = '\0';
 
-    *x = choice[0] - 48;
-    *y = choice[1] - 48;
+    *x = choice[0] - 49;
+    *y = choice[1] - 49;
 
-    if((*x >= 1 && *x <= 4) && (*y >= 1 && *y <= 4) && !(matriz_fake[*x-1][*y-1])){
-        *x -= 1;
-        *y -= 1;
+    if((*x >= 0 && *x <= 3) && (*y >= 0 && *y <= 3) && !(*(matriz_fake+((4**x)+*y)))){
         return SUCESSO;
     }else{
         *x = 0;

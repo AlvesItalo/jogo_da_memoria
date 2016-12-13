@@ -8,7 +8,6 @@ int matriz_fake[4][4]= {{0, 0, 0, 0},
 						{0, 0, 0, 0}};
 
 int main(){
-
 	menu();
 
 	return 0;
