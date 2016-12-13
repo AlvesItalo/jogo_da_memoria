@@ -12,6 +12,10 @@
 	#define limpar_console() system("clear")
 #endif
 
-
+int menu();
+void exibe_matriz();
+int recebe_coord();
+void credito();
+void exibe_rank();
 
 #endif
