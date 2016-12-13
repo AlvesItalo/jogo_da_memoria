@@ -12,11 +12,11 @@
 	#define limpar_console() system("clear")
 #endif
 
-#define GRAVA 0
-#define EXIBE 1
+#define GRAVAR 0
+#define EXIBIR 1
 #define IGNORE 5
-#define SUCESSO 1
-#define FRACASSO 0
+#define SUCESSO 0
+#define FRACASSO 1
 
 int menu();
 void exibe_matriz(int valor, int x, int y, int interruptor);
