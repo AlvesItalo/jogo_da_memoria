@@ -12,5 +12,6 @@ int um_jogador();
 int dois_jogadores();
 int validar_escolha();
 void preenche_matriz(int *matriz);
+void mexe_mexe_mainha(int * matriz);
 
 #endif
