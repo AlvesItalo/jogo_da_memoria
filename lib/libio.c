@@ -1,27 +1,27 @@
 #include "libio.h"
 
 
-void exibe_matriz(int valor, int x, int y, int interruptor){
+void exibe_matriz(int valor, int x, int y){
 	int i = 0, j = 0;
 
-	if(interruptor){
-		for(i = 0; i < 4; i++){
-			for(j = 0; j < 4; j++){
-				if((i == x) && (j == y)){
-					printf(">%d<", valor);
+	for(i = 0; i < 4; i++){
+		for(j = 0; j < 4; j++){
+			if((i == x) && (j == y)){
+				printf(">%d<", valor);
+			}else{
+				if(matriz_fake[i][j]){
+					printf(" %d ", matriz_fake[i][j]);
 				}else{
-					if(matriz_fake[i][j]){
-						printf(" %d ", matriz_fake[i][j]);
-					}else{
-						printf(" X ");
-					}
+					printf(" X ");
 				}
 			}
-			printf("\n");
 		}
-	}else{
-		matriz_fake[x][y] = valor;
+		printf("\n");
 	}
+}
+
+void grava_valor(int valor, int x, int y){
+	matriz_fake[x][y] = valor;
 }
 
 void credito(){
@@ -65,11 +65,11 @@ void menu(){
     }while(1);
 }
 
-int recebe_coord(int *x, int *y){
+int recebe_coord(int *x, int *y, int player, int coord_num){
     int i = 0, j = 0, k = 0, tam = 0;
     char choice[10];
 
-    printf(">>>");
+    printf("Jogador %d, insira o %d° par de coordenadas x, y.\n>>> ", player, coord_num);
     fflush(stdin);
     fgets(choice, 10, stdin);
     tam = strlen(choice);
