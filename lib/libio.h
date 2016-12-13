@@ -12,8 +12,12 @@
 	#define limpar_console() system("clear")
 #endif
 
+#define GRAVA 0
+#define EXIBE 1
+#define IGNORE 5
+
 int menu();
-void exibe_matriz();
+void exibe_matriz(int valor, int x, int y, int interruptor);
 int recebe_coord();
 void credito();
 void exibe_rank();
