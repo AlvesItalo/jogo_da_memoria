@@ -20,6 +20,11 @@ void exibe_matriz(int valor, int x, int y){
 	}
 }
 
+void exibe_pontuacao(int jogador1, int jogador2){
+	printf("Jogador 1:\tJogador 2:\n"
+			"Pontuacao: %d\tPontuacao: %d\n", jogador1, jogador2);
+}
+
 void grava_valor(int valor, int x, int y){
 	matriz_fake[x][y] = valor;
 }
