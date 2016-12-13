@@ -260,7 +260,7 @@ int um_jogador(){
 				exibe_pontuacao(pontuacao_jog1, pontuacao_jog2);
 				exibe_matriz(*(matriz+(4*x1)+y1), x1, y1, matriz_fake);
 
-				status = comp_coord(&x2, &y2, matriz_fake);
+				status = comp_coord(&x2, &y2, matriz_fake );
 				if((x1 == x2) && (y1 == y2)){status = 1;}
 
 			}while(status);	

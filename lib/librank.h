@@ -10,7 +10,7 @@ typedef struct Jogador{
 }t_jogador;
 
 void grava_ranking(t_jogador player);
-t_jogador le_ranking();
+t_jogador *le_ranking();
 
 
 #endif

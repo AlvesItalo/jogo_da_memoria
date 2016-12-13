@@ -22,7 +22,7 @@ void exibe_matriz(int valor, int x, int y, int *matriz_fake);
 void grava_valor(int valor, int x, int y, int *matriz_fake);
 int recebe_coord(int *x, int *y, int player, int coord_num, int *matriz_fake);
 void creditos();
-void exibe_rank();
+void exibe_rank(t_jogador *array_de_jogadores);
 void exibe_pontuacao(int jogador1, int jogador2);
 int exibe_vencedor(int jogador1, int jogador2);
 

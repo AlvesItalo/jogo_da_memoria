@@ -132,4 +132,10 @@ int recebe_coord(int *x, int *y, int player, int coord_num, int *matriz_fake){
     }
 }
 
+void exibe_rank(t_jogador *array_de_jogadores){
+    int i = 0;
 
+    for(i = 0; i < (sizeof(array_de_jogadores)/sizeof(t_jogador)); i++){
+        printf("Jogador: %s\tPontuação: %d", *(array_de_jogadores+i))
+    }
+}
