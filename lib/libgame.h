@@ -5,9 +5,12 @@
 #include <stdlib.h>
 #include "libio.h"
 
+#define LINHAS 4
+#define	COLUNAS 4
+
 int um_jogador();
 int dois_jogadores();
 int validar_escolha();
-void preeche_matriz(int *matriz);
+void preenche_matriz(int *matriz);
 
 #endif

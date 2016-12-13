@@ -18,9 +18,9 @@
 #define SUCESSO 0
 #define FRACASSO 1
 
-int menu();
+void menu();
 void exibe_matriz(int valor, int x, int y, int interruptor);
-int recebe_coord();
+int recebe_coord(int *x, int *y);
 void credito();
 void exibe_rank();
 
