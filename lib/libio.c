@@ -33,6 +33,7 @@ void credito(){
 		"\tRafael Matheus: Biblioteca de interface.\n\n");
 }
 
+/*modificar posteriormente com as chamadas das funções*/
 void menu(){
     char escolha[4];
 

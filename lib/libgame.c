@@ -1,5 +1,6 @@
 #include "libgame.h"
 
+/*testa se o usuario acertou o par*/
 int validar_escolha(int valor1, int valor2){
 	if(valor1 == valor2){
 		return 1;
@@ -8,6 +9,7 @@ int validar_escolha(int valor1, int valor2){
 	}
 }
 
+/*preenche uma matriz 4X4 com pares de 1 a 8*/
 void preenche_matriz(int *matriz){
 	int i = 0, j = 0, k = 1, l = 1;
 
@@ -25,6 +27,7 @@ void preenche_matriz(int *matriz){
 
 }
 
+/*randomiza os elementos de uma matriz 4X4*/
 void mexe_mexe_mainha(int * matriz){
 	int i = 0, j = 0, k = 0, l = 0, aux = 0;
 
