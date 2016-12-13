@@ -23,3 +23,12 @@ void exibe_matriz(int valor, int x, int y, int interruptor){
 		matriz_fake[x][y] = valor;
 	}
 }
+
+void credito(){
+	printf("Créditos:\n"
+		"\tHenrique Luis: Biblioteca de ranking.\n\n"
+		"\tItalo Alves: Gerencia, implementacao e revisao de codigo.\n\n"
+		"\tLarissa Brandao: Biblioteca de logica do jogo.\n\n"
+		"\tMatheus Hensley: Biblioteca de interface, logica do jogo \n\te revisao de codigo\n\n"
+		"\tRafael Matheus: Biblioteca de interface.\n\n");
+}
